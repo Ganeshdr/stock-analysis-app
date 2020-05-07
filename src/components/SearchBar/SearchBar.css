@@ -1,0 +1,53 @@
+.SearchBar {
+  height: 50px;
+  margin-top: 2.5rem;
+  margin-bottom: 2.5rem;
+  display: flex;
+}
+
+.SearchBar__InputBox {
+  width: 60%;
+  margin-left: 20%;
+}
+.SearchBar__Input {
+  font-size: 20px;
+  outline: none;
+  width: 100%;
+  height: 35px;
+}
+.SearchBar__Input::placeholder {
+  font-size: 12px;
+}
+
+.SearchBar__Search {
+  margin-left: 20px;
+}
+.SearchBar__InputBox .SearchBar__Predictions .prediction {
+  padding-left: 10px;
+  font-size: 15px;
+  line-height: 25px;
+  border: 1px solid black;
+  border-top: none;
+  height: 30px;
+  cursor: pointer;
+}
+.SearchBar__Predictions .prediction:hover {
+  background-color: #e9e9e9; 
+}
+.SearchBar__Button {
+  outline: none;
+  border: none;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  background-color: #333;
+  color: #fff;
+  /* max-width: 200px; */
+  /* width: 25%; */
+  height: 35px;
+}
+
+@media only screen and (min-width: 600px) {
+  .SearchBar__InputBox {
+    width: 60%;
+  }
+}

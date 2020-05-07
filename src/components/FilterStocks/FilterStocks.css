@@ -1,0 +1,15 @@
+.filter_stocks .label {
+  padding-top: 10px;
+}
+
+.filter_stocks .filters {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  column-gap: 10px;
+  row-gap: 15px;
+  justify-items: stretch;
+  padding: 10px;
+  /* flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between; */
+}

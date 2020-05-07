@@ -1,0 +1,12 @@
+.ImportFile {
+  margin-top: 2%;
+  margin-left: 9%;
+}
+
+.ImportFile .header {
+  font-size: 20px;
+  color: blue;
+}
+.ImportFile .total_entries, .ImportFile .header {
+  padding-left: 12px;
+}

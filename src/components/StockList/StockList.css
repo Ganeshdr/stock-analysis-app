@@ -1,0 +1,13 @@
+.StockList {
+  /* margin: 0 2.5rem;
+  padding: 0;
+  display: flex;
+  flex-flow: row wrap; */
+  /* justify-content: center; */
+  margin: 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  column-gap: 10px;
+  row-gap: 15px;
+  justify-items: stretch;
+}
