@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/stock-analysis-app/static/css/main.52134d8e.chunk.css",
+    "main.js": "/stock-analysis-app/static/js/main.8733d79b.chunk.js",
+    "main.js.map": "/stock-analysis-app/static/js/main.8733d79b.chunk.js.map",
+    "runtime-main.js": "/stock-analysis-app/static/js/runtime-main.7a4b76e1.js",
+    "runtime-main.js.map": "/stock-analysis-app/static/js/runtime-main.7a4b76e1.js.map",
+    "static/js/2.ea05de10.chunk.js": "/stock-analysis-app/static/js/2.ea05de10.chunk.js",
+    "static/js/2.ea05de10.chunk.js.map": "/stock-analysis-app/static/js/2.ea05de10.chunk.js.map",
+    "index.html": "/stock-analysis-app/index.html",
+    "precache-manifest.38b78e5e4c1fc0e7442d11df560a089d.js": "/stock-analysis-app/precache-manifest.38b78e5e4c1fc0e7442d11df560a089d.js",
+    "service-worker.js": "/stock-analysis-app/service-worker.js",
+    "static/css/main.52134d8e.chunk.css.map": "/stock-analysis-app/static/css/main.52134d8e.chunk.css.map",
+    "static/js/2.ea05de10.chunk.js.LICENSE.txt": "/stock-analysis-app/static/js/2.ea05de10.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.7a4b76e1.js",
+    "static/js/2.ea05de10.chunk.js",
+    "static/css/main.52134d8e.chunk.css",
+    "static/js/main.8733d79b.chunk.js"
+  ]
+}
