@@ -10,3 +10,8 @@
 .ImportFile .total_entries, .ImportFile .header {
   padding-left: 12px;
 }
+.optional {
+  color: green !important;
+  padding-left: 40% !important;
+  padding-bottom: 10px;
+}

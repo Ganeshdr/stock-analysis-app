@@ -17,9 +17,6 @@ function SearchBar(props) {
             } 
           </div>
         </div>
-        {/* <div className="SearchBar__Search">
-          <button className="SearchBar__Button" onClick={ props.onClick }>search</button>
-        </div> */}
       </div>
     );
 }

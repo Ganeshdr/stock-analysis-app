@@ -15,3 +15,23 @@
   font-family: 'Roboto', sans-serif;
   src: url('https://fonts.googleapis.com/css?family=Roboto')
 }
+.button {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 15px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+select {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-left: 30%;
+  font-size: 20px;
+  font-weight: 600;
+}

@@ -5,7 +5,6 @@ import './StockList.css';
 
 const StockList = (props) => {
 
-  console.log('props.stockItems', props.stockItems);
   const stockItems = props.stockItems.map((stock, index) => {
     return (
       <StockListItem key={ index } item={stock}/>

@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import './StockListItem.css';
 import Loader from '../Loader/Loader';
+import HistoricalData from '../HistoricalData/HistoricalData';
+import TechnicalIndicators from '../TechnicalIndicators/TechnicalIndicators';
 
 class StockListItem extends Component {
   constructor(props) {
@@ -9,9 +11,11 @@ class StockListItem extends Component {
 
     this.state = {
       stockDetails: {},
+      displayRetryOption: false,
       loadingStockDetails: false
     };
     this.openTab = this.openTab.bind(this);
+    this.fetchStockDetails = this.fetchStockDetails.bind(this);
   }
 
   componentDidMount() {
@@ -35,7 +39,7 @@ class StockListItem extends Component {
 
   fetchStockDetails(stockCode) {
     let term = `${stockCode}.NSE`;
-    const keys = ['F41ON15LGCFM4PR7', 'SYTCQBUIU44BX2G4', '50M3AP1K3Y', 'RNZPXZ6Q9FEFMEHM', 'VZLZ58FTEXZW7QZ6'];
+    const keys = ['E3JQ79Z8TOZDXQ9O', '1MZEAXT6B2B52KXY', 'M8MTQHK38J65US1E', 'CDYFPHQYOGVYKYFL', 'TM6O1OH9WQIT6LIV'];
     const key = keys[Math.floor(Math.random() * keys.length)];
     const url = `https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${term}&apikey=${key}`;
 
@@ -44,11 +48,23 @@ class StockListItem extends Component {
     });
     axios.get(url)
     .then(res => {
+      if (res.data['Global Quote']) {
+        this.setState({
+          stockDetails: res.data['Global Quote'],
+          displayRetryOption: false
+        });
+      } else {
+        this.setState({
+          displayRetryOption: true
+        });
+      }
+    })
+    .catch(error => {
+      console.log(error);
       this.setState({
-        stockDetails: res.data['Global Quote']
+        displayRetryOption: true
       });
     })
-    .catch(error => console.log(error))
     .finally(() => {
       this.setState({
         loadingStockDetails: false
@@ -63,23 +79,16 @@ class StockListItem extends Component {
         <div>
           <div className="title">{ this.props.item.name }</div>
           <div className="tab">
-            <button className={`tablinks-${this.props.item.code}`} onClick={ (ev) => this.openTab( ev, 'latest') } id={`defaultOpen-${this.props.item.code}`}>Latest Data</button>
-            <button className={`tablinks-${this.props.item.code}`} onClick={ (ev) => this.openTab(ev, 'historical') }>Historical</button>
-            <button className={`tablinks-${this.props.item.code}`} onClick={ (ev) => this.openTab(ev, 'technical') }>Technical Indicators</button>
+            <button className={`tablinks-${this.props.item.code}`} onClick={ (ev) => this.openTab( ev, `latest-${this.props.item.code}`) } id={`defaultOpen-${this.props.item.code}`}>Latest Data</button>
+            <button className={`tablinks-${this.props.item.code}`} onClick={ (ev) => this.openTab(ev, `historical-${this.props.item.code}`) }>Historical</button>
+            <button className={`tablinks-${this.props.item.code}`} onClick={ (ev) => this.openTab(ev, `technical-${this.props.item.code}`) }>Technical Indicators</button>
           </div>
-
-          <div id="historical" className="tabcontent">
-            <h3>Paris</h3>
-            <p>Paris is the capital of France.</p> 
-          </div>
-
-          <div id="technical" className="tabcontent">
-            <h3>Tokyo</h3>
-            <p>Tokyo is the capital of Japan.</p>
-          </div>
+          {
+            this.state.displayRetryOption && !this.state.loadingStockDetails ? <div><div style={{color: 'red'}}>Couldn't retrieve latest data. Refresh the page again after 1 minute</div><div><button className="button" onClick={() => this.fetchStockDetails(this.props.item.code)}>Refresh</button></div></div> : null
+          }
           { 
             this.state.loadingStockDetails ? <Loader sizeStyle={{height: '30px', width: '30px', marginLeft: '40%'}}/> :
-            <div id="latest" className={`tabcontent-${this.props.item.code} details`}>
+            <div id={`latest-${this.props.item.code}`} className={`tabcontent-${this.props.item.code} details`}>
               { stockDetails && Object.keys(stockDetails).length ? Object.keys(stockDetails).map((key, index) => {
                 return (
                   <div key={index}>{key} : {stockDetails[key]}</div>
@@ -88,6 +97,12 @@ class StockListItem extends Component {
               }
             </div> 
           }
+          <div id={`historical-${this.props.item.code}`} className={`tabcontent-${this.props.item.code} details`}>
+            <HistoricalData stock={this.props.item}/>
+          </div>
+          <div id={`technical-${this.props.item.code}`} className={`tabcontent-${this.props.item.code} details`}>
+            <TechnicalIndicators stock={this.props.item}/>
+          </div>
         </div>
       </div>
     );

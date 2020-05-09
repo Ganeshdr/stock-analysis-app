@@ -55,7 +55,7 @@ class App extends Component {
 
   fetchAllPredictions(text) {
     let term = `${text}.NSE`;
-    const keys = ['F41ON15LGCFM4PR7', 'SYTCQBUIU44BX2G4', '50M3AP1K3Y', 'RNZPXZ6Q9FEFMEHM', 'VZLZ58FTEXZW7QZ6'];
+    const keys = ['5VDBWLCQX19QLOHA', 'BYCL2VV943GO0OYJ', '2H21XW7C06ZD97VM', 'U9QP95JKNBLAGPS1', 'ULJDF26QPKN97Z44'];
     const key = keys[Math.floor(Math.random() * keys.length)];
     const url = `https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=${term}&apikey=${key}`;
 
