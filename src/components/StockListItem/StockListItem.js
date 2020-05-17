@@ -3,6 +3,7 @@ import axios from 'axios';
 import './StockListItem.css';
 import Loader from '../Loader/Loader';
 import HistoricalData from '../HistoricalData/HistoricalData';
+import FundamentalDetails from '../FundamentalDetails/FundamentalDetails';
 import TechnicalIndicators from '../TechnicalIndicators/TechnicalIndicators';
 
 class StockListItem extends Component {
@@ -80,6 +81,7 @@ class StockListItem extends Component {
           <div className="title">{ this.props.item.name }</div>
           <div className="tab">
             <button className={`tablinks-${this.props.item.code}`} onClick={ (ev) => this.openTab( ev, `latest-${this.props.item.code}`) } id={`defaultOpen-${this.props.item.code}`}>Latest Data</button>
+            <button className={`tablinks-${this.props.item.code}`} onClick={ (ev) => this.openTab( ev, `fundamental-${this.props.item.code}`) }>Fundamental Details</button>
             <button className={`tablinks-${this.props.item.code}`} onClick={ (ev) => this.openTab(ev, `historical-${this.props.item.code}`) }>Historical</button>
             <button className={`tablinks-${this.props.item.code}`} onClick={ (ev) => this.openTab(ev, `technical-${this.props.item.code}`) }>Technical Indicators</button>
           </div>
@@ -89,14 +91,17 @@ class StockListItem extends Component {
           { 
             this.state.loadingStockDetails ? <Loader sizeStyle={{height: '30px', width: '30px', marginLeft: '40%'}}/> :
             <div id={`latest-${this.props.item.code}`} className={`tabcontent-${this.props.item.code} details`}>
-              { stockDetails && Object.keys(stockDetails).length ? Object.keys(stockDetails).map((key, index) => {
+              <div>{ stockDetails && Object.keys(stockDetails).length ? Object.keys(stockDetails).map((key, index) => {
                 return (
-                  <div key={index}>{key} : {stockDetails[key]}</div>
+                <div key={index}>{ key === '05. price' ? <div>{key} : { Number(stockDetails['09. change']) > 0 ? <span style={{color: 'darkgreen'}}>{stockDetails[key]}</span> : <span style={{color: 'red'}}>{stockDetails[key]}</span>}</div>: <div>{key} : {stockDetails[key]}</div> }</div>
                 );
               }) : null
-              }
+              }</div>
             </div> 
           }
+          <div id={`fundamental-${this.props.item.code}`} className={`tabcontent-${this.props.item.code} details`}>
+            <FundamentalDetails stock={this.props.item}/>
+          </div>
           <div id={`historical-${this.props.item.code}`} className={`tabcontent-${this.props.item.code} details`}>
             <HistoricalData stock={this.props.item}/>
           </div>

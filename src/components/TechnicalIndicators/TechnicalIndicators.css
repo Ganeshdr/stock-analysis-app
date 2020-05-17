@@ -2,3 +2,7 @@
   height: 300px;
   width: 50%;
 }
+
+.technical-entries :last-child {
+  padding-top: 10px;
+}

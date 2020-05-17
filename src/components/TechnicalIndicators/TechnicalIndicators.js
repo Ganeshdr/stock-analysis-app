@@ -32,7 +32,6 @@ class TechnicalIndicators extends Component {
   }
 
   fetchTradingDataForStock(stockCode, interval) {
-    console.log('fetchTradingDataForStock', stockCode, interval);
     let term = `${stockCode}.NSE`;
     const keys = ['F41ON15LGCFM4PR7', 'SYTCQBUIU44BX2G4', '50M3AP1K3Y', 'RNZPXZ6Q9FEFMEHM', 'VZLZ58FTEXZW7QZ6'];
     const key = keys[Math.floor(Math.random() * keys.length)];
@@ -76,8 +75,7 @@ class TechnicalIndicators extends Component {
             low: allValues.map(val => parseFloat(val['3. low'])).slice(0, 3).reverse(),
             close: allValues.map(val => parseFloat(val['4. close'])).slice(0, 3).reverse()
           };
-                      
-        console.log('inputValues', inputValues1, inputValuesWith3dayInput, bearishengulfingpattern(inputValues1), bullishengulfingpattern(inputValues1));
+
         this.setState({
           technicalPatterns: {
             "Is Bearish engulfing pattern formed": bearishengulfingpattern(inputValues1),
@@ -99,7 +97,6 @@ class TechnicalIndicators extends Component {
           },
           displayRetryOption: false
         });
-        console.log('this.state.technicalPatterns', this.state.technicalPatterns);
       } else {
         this.setState({
           displayRetryOption: true
@@ -140,11 +137,11 @@ class TechnicalIndicators extends Component {
         }
         { 
           this.state.loadingStockDetails ? <Loader sizeStyle={{height: '30px', width: '30px', marginLeft: '40%', marginTop: '20px'}}/> :
-          <div>
+          <div className="technical-entries">
             {
               this.state.technicalPatterns && Object.keys(this.state.technicalPatterns).length ? Object.keys(this.state.technicalPatterns).map((key, index) => {
                 return (
-                  <div key={index}>{key} : {this.state.technicalPatterns[key] ? 'Yes': 'No'}</div>
+                  <div key={index}>{key} : {this.state.technicalPatterns[key] ? <span style={{color: 'darkgreen'}}>'Yes'</span>: <span style={{color: 'red'}}>'No'</span>}</div>
                 );
               }) : null
             }

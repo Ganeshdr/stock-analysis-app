@@ -9,8 +9,7 @@ import './App.css';
 
 const INPUT_TIMEOUT = 600;
 const filters = {};
-let stocks = [];
-
+let stocks = []; 
 // const SMA = require('technicalindicators').SMA;
 // console.log(SMA.calculate({period : 5, values : [1,2,3,4,5,6,7,8,9]}));
 
@@ -77,11 +76,13 @@ class App extends Component {
 
   onSelectStock(item, ev) {
     item.code = item.code.split('.')[0].toString();
-    this.setState({
-      value: '',
-      predictions: [],
-      selectedStocks: [ ...this.state.selectedStocks, item ]
-    });
+    if (!this.state.selectedStocks.some(stock => stock.code === item.code)) {
+      this.setState({
+        value: '',
+        predictions: [],
+        selectedStocks: [ ...this.state.selectedStocks, item ]
+      });
+    }
     ev.preventDefault();
   }
 
