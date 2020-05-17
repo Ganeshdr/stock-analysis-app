@@ -24,7 +24,7 @@ function areEqual(prevProps, nextProps) {
 const FundamentalDetails = (props) => {
   // console.log('json data', StockFundamentalData["3573 Stocks Detail"][0].Name, props);
   const searchedStockDetails = allStockData && allStockData.filter(stock => stock["NSE Code"] === props.stock.code)[0],
-    keys = ['Price to Earning', 'Debt to equity', 'Return on capital employed', 'Return on equity', 
+    keys = ['Price to Earning', 'Debt to equity', 'Return on capital employed', 'Return on equity', 'Price to Free Cash Flow', 'Free cash flow 3years', 'EPS',
     'Price to book value', 'Promoter holding', 'Pledged percentage', 'PEG Ratio', 'Average return on equity 3Years', 'Dividend yield', 
     'Industry PE', 'Profit growth 5Years'];
   return (
