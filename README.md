@@ -6,6 +6,7 @@ A ReactJS application to do fundamental and technical analysis for a stock trade
 
 ## Live Demo
 
+![](stock-analysis-app.gif) <br>
 You can [click here](https://ganeshdr.github.io/stock-analysis-app/) to take a look at the application.
 
 ## Installation
